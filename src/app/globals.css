@@ -1,0 +1,507 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 9% 17%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+  }
+
+  /* Blue Theme (Default) */
+  .blue {
+    --primary: 221 83% 53%;
+    --primary-foreground: 210 40% 98%;
+    --ring: 221 83% 53%;
+  }
+
+  .dark.blue {
+    --primary: 221 83% 53%;
+    --primary-foreground: 210 40% 98%;
+    --ring: 221 83% 53%;
+  }
+
+  /* Green Theme */
+  .green {
+    --primary: 142 76% 36%;
+    --primary-foreground: 355 100% 97%;
+    --ring: 142 76% 36%;
+  }
+
+  .dark.green {
+    --primary: 142 76% 36%;
+    --primary-foreground: 355 100% 97%;
+    --ring: 142 76% 36%;
+  }
+
+  /* Purple Theme */
+  .purple {
+    --primary: 262 83% 58%;
+    --primary-foreground: 210 40% 98%;
+    --ring: 262 83% 58%;
+  }
+
+  .dark.purple {
+    --primary: 262 83% 58%;
+    --primary-foreground: 210 40% 98%;
+    --ring: 262 83% 58%;
+  }
+
+  /* Orange Theme */
+  .orange {
+    --primary: 25 95% 53%;
+    --primary-foreground: 20 14% 4%;
+    --ring: 25 95% 53%;
+  }
+
+  .dark.orange {
+    --primary: 25 95% 53%;
+    --primary-foreground: 20 14% 4%;
+    --ring: 25 95% 53%;
+  }
+
+  /* Red Theme */
+  .red {
+    --primary: 0 84% 60%;
+    --primary-foreground: 0 0% 98%;
+    --ring: 0 84% 60%;
+  }
+
+  .dark.red {
+    --primary: 0 84% 60%;
+    --primary-foreground: 0 0% 98%;
+    --ring: 0 84% 60%;
+  }
+
+  /* Pink Theme */
+  .pink {
+    --primary: 330 81% 60%;
+    --primary-foreground: 0 0% 98%;
+    --ring: 330 81% 60%;
+  }
+
+  .dark.pink {
+    --primary: 330 81% 60%;
+    --primary-foreground: 0 0% 98%;
+    --ring: 330 81% 60%;
+  }
+
+  /* Indigo Theme */
+  .indigo {
+    --primary: 238 100% 67%;
+    --primary-foreground: 0 0% 98%;
+    --ring: 238 100% 67%;
+  }
+
+  .dark.indigo {
+    --primary: 238 100% 67%;
+    --primary-foreground: 0 0% 98%;
+    --ring: 238 100% 67%;
+  }
+
+  /* Teal Theme */
+  .teal {
+    --primary: 173 80% 40%;
+    --primary-foreground: 0 0% 98%;
+    --ring: 173 80% 40%;
+  }
+
+  .dark.teal {
+    --primary: 173 80% 40%;
+    --primary-foreground: 0 0% 98%;
+    --ring: 173 80% 40%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-family, 'Inter');
+    font-size: var(--font-size, 14px);
+    font-weight: var(--font-weight, normal);
+    /* Ẩn scrollbar trên toàn hệ thống */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  body::-webkit-scrollbar {
+    display: none;  /* Safari và Chrome */
+  }
+
+  /* Áp dụng font settings cho tất cả elements */
+  html {
+    font-family: var(--font-family, 'Inter');
+    font-size: var(--font-size, 14px);
+    font-weight: var(--font-weight, normal);
+    /* Ẩn scrollbar trên toàn hệ thống */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  html::-webkit-scrollbar {
+    display: none;  /* Safari và Chrome */
+  }
+
+  /* Đảm bảo các component UI cũng sử dụng font settings */
+  .font-sans {
+    font-family: var(--font-family, 'Inter') !important;
+  }
+}
+
+/* Smooth transitions for sidebar */
+.sidebar-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Prevent text selection during animation */
+.sidebar-transition * {
+  user-select: none;
+}
+
+/* GPU acceleration for smooth animations */
+.sidebar-transition {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimize text rendering during animations */
+.sidebar-text {
+  will-change: opacity, width;
+}
+
+/* Liquid glass animations */
+@keyframes liquid-float {
+
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+  }
+
+  33% {
+    transform: translateY(-30px) translateX(20px) scale(1.1);
+  }
+
+  66% {
+    transform: translateY(20px) translateX(-15px) scale(0.9);
+  }
+}
+
+@keyframes liquid-float-delayed {
+
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+  }
+
+  33% {
+    transform: translateY(25px) translateX(-20px) scale(0.95);
+  }
+
+  66% {
+    transform: translateY(-20px) translateX(25px) scale(1.05);
+  }
+}
+
+@keyframes liquid-float-slow {
+
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+  }
+
+  50% {
+    transform: translateY(-15px) translateX(15px) scale(1.02);
+  }
+}
+
+@keyframes liquid-pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+.animate-liquid-float {
+  animation: liquid-float 8s ease-in-out infinite;
+}
+
+.animate-liquid-float-delayed {
+  animation: liquid-float-delayed 10s ease-in-out infinite;
+  animation-delay: -2s;
+}
+
+.animate-liquid-float-slow {
+  animation: liquid-float-slow 12s ease-in-out infinite;
+  animation-delay: -4s;
+}
+
+.animate-liquid-pulse {
+  animation: liquid-pulse 6s ease-in-out infinite;
+  animation-delay: -1s;
+}
+
+
+/* Ẩn scrollbar trên toàn hệ thống nhưng vẫn giữ chức năng cuộn */
+* {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+
+*::-webkit-scrollbar {
+  display: none;  /* Safari và Chrome */
+}
+
+/* Thêm vào global CSS hoặc tạo file riêng */
+.table-fixed {
+  table-layout: fixed;
+}
+
+/* Đảm bảo sticky header có shadow và không bị đè */
+.sticky {
+  position: sticky;
+  z-index: 10;
+}
+
+/* Shadow cho sticky header */
+.shadow-sm {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+/* Ẩn scrollbar cho các phần tử có overflow-auto */
+.overflow-auto {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.overflow-auto::-webkit-scrollbar {
+  display: none;  /* Safari và Chrome */
+}
+
+/* Đảm bảo border hiển thị đều */
+.border-r:last-child {
+  border-right: none !important;
+}
+
+/* Fix cho mobile scroll */
+@media (max-width: 640px) {
+  .overflow-auto {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Line clamp utilities */
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+/* Scroll to top button mobile optimization */
+.scroll-to-top {
+  position: fixed !important;
+  z-index: 9999 !important;
+  bottom: 16px !important;
+  right: 16px !important;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  border: 2px solid white !important;
+}
+
+@media (min-width: 640px) {
+  .scroll-to-top {
+    bottom: 24px !important;
+    right: 24px !important;
+    width: 48px !important;
+    height: 48px !important;
+  }
+}
+
+/* Hide scrollbar but keep functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
+}
+
+/* Drag scroll optimization */
+.drag-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.drag-scroll:active {
+  scroll-behavior: auto;
+}
+
+/* Prevent text selection during drag */
+.drag-scroll * {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Custom color theme support */
+.custom {
+  --primary: var(--primary-color, 59 130 246);
+  --primary-foreground: var(--primary-foreground, 255 255 255);
+}
+
+/* Tab browser custom color support */
+.custom .tab-active {
+  background-color: hsl(var(--primary) / 0.1);
+  color: hsl(var(--primary));
+  border-bottom-color: hsl(var(--primary)) !important;
+}
+
+.custom .tab-hover:hover {
+  background-color: hsl(var(--primary) / 0.05);
+}
+
+.custom .tab-close:hover {
+  background-color: hsl(var(--primary) / 0.1);
+}
+
+/* Fallback for predefined themes */
+.red .tab-active {
+  background-color: hsl(0 84% 93%);
+  color: hsl(0 84% 60%);
+  border-bottom-color: hsl(0 84% 60%) !important;
+}
+
+.orange .tab-active {
+  background-color: hsl(25 95% 93%);
+  color: hsl(25 95% 53%);
+  border-bottom-color: hsl(25 95% 53%) !important;
+}
+
+.yellow .tab-active {
+  background-color: hsl(45 93% 93%);
+  color: hsl(45 93% 47%);
+  border-bottom-color: hsl(45 93% 47%) !important;
+}
+
+.green .tab-active {
+  background-color: hsl(142 76% 93%);
+  color: hsl(142 76% 36%);
+  border-bottom-color: hsl(142 76% 36%) !important;
+}
+
+.cyan .tab-active {
+  background-color: hsl(188 94% 93%);
+  color: hsl(188 94% 42%);
+  border-bottom-color: hsl(188 94% 42%) !important;
+}
+
+.blue .tab-active {
+  background-color: hsl(214 95% 93%);
+  color: hsl(214 95% 50%);
+  border-bottom-color: hsl(214 95% 50%) !important;
+}
+
+.purple .tab-active {
+  background-color: hsl(262 83% 93%);
+  color: hsl(262 83% 58%);
+  border-bottom-color: hsl(262 83% 58%) !important;
+}
+
+.pink .tab-active {
+  background-color: hsl(330 81% 93%);
+  color: hsl(330 81% 60%);
+  border-bottom-color: hsl(330 81% 60%) !important;
+}
+
+.black .tab-active {
+  background-color: hsl(0 0% 93%);
+  color: hsl(0 0% 0%);
+  border-bottom-color: hsl(0 0% 0%) !important;
+}
+
+.gray .tab-active {
+  background-color: hsl(220 13% 93%);
+  color: hsl(220 13% 46%);
+  border-bottom-color: hsl(220 13% 46%) !important;
+}
+
+.slate .tab-active {
+  background-color: hsl(215 16% 93%);
+  color: hsl(215 16% 34%);
+  border-bottom-color: hsl(215 16% 34%) !important;
+}
+
+.teal .tab-active {
+  background-color: hsl(173 80% 93%);
+  color: hsl(173 80% 40%);
+  border-bottom-color: hsl(173 80% 40%) !important;
+}
