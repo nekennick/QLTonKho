@@ -9,7 +9,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Eye, EyeOff, User, Lock, ArrowRight, Shield, Settings, Network, Phone, Mail, MapPin, BookOpen, Globe } from 'lucide-react';
+import { Eye, EyeOff, User, Lock, ArrowRight, Shield, Sparkles, Building2, BookOpen, Globe, Network, Settings, BarChart3 } from 'lucide-react';
 import Image from 'next/image';
 
 const LoginPage = () => {
@@ -55,21 +55,13 @@ const LoginPage = () => {
         setLoading(true);
         try {
             const user = await authUtils.login(formData.username, formData.password);
-            console.log('Login successful:', user);
-
             toast.success(`Chào mừng ${user.username} quay trở lại Tồn kho ĐTB!`);
-
             await new Promise(resolve => setTimeout(resolve, 100));
-
             let returnUrl = searchParams.get('returnUrl') || config.ROUTES.DASHBOARD;
-
             if (returnUrl.includes('%')) {
                 returnUrl = decodeURIComponent(returnUrl);
             }
-
-            console.log('Redirecting to:', returnUrl);
             window.location.href = returnUrl;
-
         } catch (error: any) {
             console.error('Login error:', error);
             toast.error(error.message);
@@ -80,317 +72,218 @@ const LoginPage = () => {
 
     if (!mounted) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 to-teal-50">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600"></div>
+            <div className="min-h-screen flex items-center justify-center bg-[#0a0a0f]">
+                <div className="animate-spin rounded-full h-8 w-8 border-2 border-violet-500/30 border-t-violet-500"></div>
             </div>
         );
     }
 
     return (
-        <div className="bg-gradient-to-br from-purple-50 via-blue-50/30 to-teal-50 min-h-screen">
-            <div className="flex min-h-screen">
-                {/* Left Panel - Branding & Features - Desktop only */}
-                <div className="hidden lg:flex lg:w-1/2 xl:w-3/5 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-purple-600 via-blue-600 to-teal-600"></div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+        <div className="min-h-screen bg-[#0a0a0f] text-white overflow-hidden flex items-center justify-center">
+            {/* Animated gradient background */}
+            <div className="fixed inset-0 pointer-events-none">
+                <div className="absolute top-0 left-1/4 w-[700px] h-[700px] bg-gradient-to-r from-violet-600/30 to-fuchsia-600/30 rounded-full blur-[150px] animate-pulse" />
+                <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-gradient-to-r from-cyan-600/20 to-blue-600/20 rounded-full blur-[120px]" />
+                <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-gradient-to-r from-pink-600/20 to-rose-600/20 rounded-full blur-[100px]" />
 
-                    {/* Decorative Elements */}
-                    <div className="absolute top-20 left-20 w-32 h-32 bg-white/10 rounded-full blur-3xl"></div>
-                    <div className="absolute bottom-40 right-32 w-40 h-40 bg-white/5 rounded-full blur-3xl"></div>
-                    <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-white/10 rounded-full blur-2xl"></div>
+                {/* Grid pattern */}
+                <div
+                    className="absolute inset-0 opacity-[0.03]"
+                    style={{
+                        backgroundImage: `linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)`,
+                        backgroundSize: '60px 60px'
+                    }}
+                />
+            </div>
 
-                    <div className="relative z-10 flex flex-col justify-center px-12 xl:px-16 text-white">
-                        {/* Logo */}
-                        <div className="mb-12">
-                            <div className="flex items-center mb-6">
-                                <div className="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center border border-white/30 p-2">
-                                    <Image
-                                        src="/logo1.png"
-                                        alt="NZ Logo"
-                                        width={48}
-                                        height={48}
-                                        className="object-contain"
-                                        priority
-                                    />
-                                </div>
-                                <div className="ml-4">
-                                    <h1 className="text-3xl font-bold">Tồn kho ĐTB</h1>
-                                    <p className="text-blue-100 text-sm">Phần mềm quản lý kho
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Welcome Message */}
-                        <div className="mb-12">
-                            <h2 className="text-4xl xl:text-5xl font-bold mb-4 leading-tight">
-                                Quản lý kho
-                                <br />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-teal-300">
-                                    chuyên nghiệp
-                                </span>
-                            </h2>
-                            <p className="text-xl text-blue-100 leading-relaxed">
-                                Tối ưu hóa quy trình kho, theo dõi tồn kho và quản lý hàng hóa một cách hiệu quả.
-                            </p>
-                        </div>
-
-                        {/* Features */}
-                        <div className="space-y-6">
-                            <div className="flex items-center">
-                                <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mr-4">
-                                    <Network className="w-6 h-6" />
-                                </div>
-                                <div>
-                                    <h3 className="font-semibold text-lg">Quản lý tồn kho</h3>
-                                    <p className="text-blue-100">Theo dõi và kiểm soát số lượng hàng hóa trong kho</p>
-                                </div>
-                            </div>
-
-                            <div className="flex items-center">
-                                <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mr-4">
-                                    <Settings className="w-6 h-6" />
-                                </div>
-                                <div>
-                                    <h3 className="font-semibold text-lg">Quản lý xuất nhập kho</h3>
-                                    <p className="text-blue-100">Kiểm soát quy trình nhập kho, xuất kho và điều chuyển</p>
-                                </div>
-                            </div>
-
-                            <div className="flex items-center">
-                                <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mr-4">
-                                    <Shield className="w-6 h-6" />
-                                </div>
-                                <div>
-                                    <h3 className="font-semibold text-lg">Báo cáo thống kê</h3>
-                                    <p className="text-blue-100">Phân tích hiệu suất kho và tối ưu hóa quản lý</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Stats */}
-                        <div className="mt-12 grid grid-cols-3 gap-8">
-                            <div className="text-center">
-                                <div className="text-3xl font-bold text-purple-300 mb-1">1000+</div>
-                                <div className="text-sm text-blue-100">Sản phẩm</div>
-                            </div>
-                            <div className="text-center">
-                                <div className="text-3xl font-bold text-teal-300 mb-1">Hơn 50</div>
-                                <div className="text-sm text-blue-100">Kho hàng</div>
-                            </div>
-                            <div className="text-center">
-                                <div className="text-3xl font-bold text-blue-300 mb-1">24/7</div>
-                                <div className="text-sm text-blue-100">Giám sát</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Right Panel - Login Form */}
-                <div className="w-full lg:w-1/2 xl:w-2/5 flex flex-col min-h-screen">
-                    {/* Mobile Header */}
-                    <div className="lg:hidden bg-gradient-to-r text-white py-4 px-6 flex-shrink-0">
-                        <div className="flex items-center">
-                            <div className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center mr-3 p-1">
+            {/* Main Content - Centered */}
+            <div className="relative z-10 w-full max-w-2xl mx-auto px-4 py-12">
+                {/* Logo & Branding */}
+                <div className="text-center mb-10">
+                    <div className="inline-flex items-center gap-3 mb-6">
+                        <div className="relative">
+                            <div className="absolute inset-0 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-2xl blur-xl opacity-60" />
+                            <div className="relative w-16 h-16 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-2xl flex items-center justify-center p-2">
                                 <Image
                                     src="/logo1.png"
-                                    alt="NZ Logo"
-                                    width={32}
-                                    height={32}
+                                    alt="Logo"
+                                    width={48}
+                                    height={48}
                                     className="object-contain"
                                     priority
                                 />
                             </div>
-                            <div>
-                                <h1 className="text-lg font-bold">Tồn kho ĐTB</h1>
-                                <p className="text-blue-100 text-xs">Phần mềm quản lý kho</p>
-                            </div>
+                        </div>
+                        <div className="text-left">
+                            <h1 className="text-3xl font-bold text-white">Tồn kho ĐTB</h1>
+                            <p className="text-white/40">Hệ thống quản lý kho hàng</p>
                         </div>
                     </div>
+                </div>
 
-                    {/* Login Content */}
-                    <div className="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-8">
-                        <div className="w-full max-w-md">
-                            {/* Desktop Logo for Login Form */}
-                            <div className="hidden lg:block text-center mb-8">
-                                <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br rounded-2xl mb-4 p-3">
-                                    <Image
-                                        src="/logo1.png"
-                                        alt="NZ Logo"
-                                        width={56}
-                                        height={56}
-                                        className="object-contain"
-                                        priority
-                                    />
-                                </div>
-                                <h1 className="text-2xl font-bold text-gray-800">Tồn kho ĐTB</h1>
+                {/* Login Card */}
+                <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-r from-violet-500/20 via-fuchsia-500/20 to-pink-500/20 rounded-3xl blur-2xl" />
+                    <Card className="relative bg-white/[0.03] border-white/10 backdrop-blur-2xl rounded-3xl overflow-hidden">
+                        <CardContent className="p-10">
+                            {/* Header */}
+                            <div className="text-center mb-10">
+                                <h2 className="text-3xl font-bold text-white mb-3">
+                                    Đăng nhập
+                                </h2>
+                                <p className="text-white/50 text-lg">
+                                    Truy cập vào hệ thống quản lý kho
+                                </p>
                             </div>
 
-                            {/* Login Form */}
-                            <Card className="border-0 shadow-xl bg-white/90 backdrop-blur-sm">
-                                <CardContent className="p-6">
-                                    <div className="text-center mb-6">
-                                        <h2 className="text-xl font-bold text-gray-800 mb-1">
-                                            Đăng nhập hệ thống
-                                        </h2>
-                                        <p className="text-gray-600 text-sm">
-                                            Truy cập vào hệ thống quản lý kho
+                            {/* Return URL Notice */}
+                            {searchParams.get('returnUrl') && (
+                                <div className="mb-8 p-4 bg-violet-500/10 border border-violet-500/20 text-violet-300 rounded-2xl">
+                                    <div className="flex items-center">
+                                        <Shield className="w-5 h-5 mr-3" />
+                                        <p className="text-base">
+                                            <span className="font-medium">Yêu cầu xác thực:</span> Vui lòng đăng nhập để tiếp tục
                                         </p>
                                     </div>
+                                </div>
+                            )}
 
-                                    {/* Return URL Notice */}
-                                    {searchParams.get('returnUrl') && (
-                                        <div className="mb-4 p-3 bg-purple-50 border border-purple-200 text-purple-800 rounded-lg">
-                                            <div className="flex items-center">
-                                                <Shield className="w-3 h-3 mr-2" />
-                                                <p className="text-xs">
-                                                    <span className="font-medium">Yêu cầu xác thực:</span> Vui lòng đăng nhập
-                                                </p>
-                                            </div>
+                            <form onSubmit={handleSubmit} className="space-y-6">
+                                {/* Username */}
+                                <div>
+                                    <Label htmlFor="username" className="block text-base font-medium text-white/70 mb-3">
+                                        Tên đăng nhập
+                                    </Label>
+                                    <div className="relative">
+                                        <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
+                                            <User className="h-5 w-5 text-white/30" />
+                                        </div>
+                                        <Input
+                                            id="username"
+                                            name="username"
+                                            type="text"
+                                            required
+                                            placeholder="Nhập tên đăng nhập"
+                                            className="pl-14 h-14 text-base bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-violet-500 focus:ring-violet-500 rounded-2xl"
+                                            value={formData.username}
+                                            onChange={handleChange}
+                                        />
+                                    </div>
+                                </div>
+
+                                {/* Password */}
+                                <div>
+                                    <div className="flex justify-between items-center mb-3">
+                                        <Label htmlFor="password" className="text-base font-medium text-white/70">
+                                            Mật khẩu
+                                        </Label>
+                                        <span className="text-sm text-violet-400 cursor-pointer hover:text-violet-300 transition-colors">
+                                            Liên hệ Admin
+                                        </span>
+                                    </div>
+                                    <div className="relative">
+                                        <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
+                                            <Lock className="h-5 w-5 text-white/30" />
+                                        </div>
+                                        <Input
+                                            id="password"
+                                            name="password"
+                                            type={showPassword ? 'text' : 'password'}
+                                            required
+                                            placeholder="Nhập mật khẩu"
+                                            className="pl-14 pr-14 h-14 text-base bg-white/5 border-white/10 text-white placeholder:text-white/30 focus:border-violet-500 focus:ring-violet-500 rounded-2xl"
+                                            value={formData.password}
+                                            onChange={handleChange}
+                                        />
+                                        <button
+                                            type="button"
+                                            className="absolute inset-y-0 right-0 pr-5 flex items-center"
+                                            onClick={() => setShowPassword(!showPassword)}
+                                        >
+                                            {showPassword ? (
+                                                <EyeOff className="h-5 w-5 text-white/30 hover:text-white/60 transition-colors" />
+                                            ) : (
+                                                <Eye className="h-5 w-5 text-white/30 hover:text-white/60 transition-colors" />
+                                            )}
+                                        </button>
+                                    </div>
+                                </div>
+
+                                {/* Remember me */}
+                                <div className="flex items-center">
+                                    <input
+                                        id="remember-me"
+                                        name="remember-me"
+                                        type="checkbox"
+                                        className="h-5 w-5 bg-white/5 border-white/20 rounded text-violet-500 focus:ring-violet-500"
+                                    />
+                                    <label htmlFor="remember-me" className="ml-3 block text-base text-white/50">
+                                        Ghi nhớ đăng nhập
+                                    </label>
+                                </div>
+
+                                {/* Submit Button */}
+                                <Button
+                                    type="submit"
+                                    disabled={loading}
+                                    className="w-full h-14 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white font-semibold text-lg rounded-2xl transition-all duration-200 shadow-2xl shadow-violet-500/30"
+                                >
+                                    {loading ? (
+                                        <div className="flex items-center justify-center">
+                                            <div className="animate-spin mr-3 h-5 w-5 border-2 border-white/30 border-t-white rounded-full"></div>
+                                            Đang xác thực...
+                                        </div>
+                                    ) : (
+                                        <div className="flex items-center justify-center">
+                                            Đăng nhập
+                                            <ArrowRight className="ml-2 h-5 w-5" />
                                         </div>
                                     )}
+                                </Button>
+                            </form>
 
-                                   
-
-                                    <form onSubmit={handleSubmit} className="space-y-4">
-                                        {/* Username */}
-                                        <div>
-                                            <Label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">
-                                                Tên đăng nhập
-                                            </Label>
-                                            <div className="relative">
-                                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                                    <User className="h-4 w-4 text-gray-400" />
-                                                </div>
-                                                <Input
-                                                    id="username"
-                                                    name="username"
-                                                    type="text"
-                                                    required
-                                                    placeholder="Nhập tên đăng nhập"
-                                                    className="pl-10 h-10 border-gray-300 focus:border-purple-500 focus:ring-purple-500 rounded-lg text-sm"
-                                                    value={formData.username}
-                                                    onChange={handleChange}
-                                                />
+                            {/* Features */}
+                            <div className="mt-10 pt-8 border-t border-white/5">
+                                <div className="grid grid-cols-3 gap-4">
+                                    {[
+                                        { icon: Network, label: 'Quản lý tồn kho', color: 'from-cyan-500 to-blue-500' },
+                                        { icon: Settings, label: 'Xuất nhập kho', color: 'from-violet-500 to-purple-500' },
+                                        { icon: BarChart3, label: 'Báo cáo thống kê', color: 'from-pink-500 to-rose-500' }
+                                    ].map((feature, index) => (
+                                        <div key={index} className="text-center group cursor-pointer">
+                                            <div className={`w-12 h-12 mx-auto mb-2 bg-gradient-to-r ${feature.color} rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                                                <feature.icon className="w-6 h-6 text-white" />
                                             </div>
+                                            <p className="text-xs text-white/40 group-hover:text-white/60 transition-colors">{feature.label}</p>
                                         </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+                </div>
 
-                                        {/* Password */}
-                                        <div>
-                                            <div className="flex justify-between items-center mb-1">
-                                                <Label htmlFor="password" className="text-sm font-medium text-gray-700">
-                                                    Mật khẩu
-                                                </Label>
-                                                <span className="text-xs text-purple-600 font-medium">
-                                                    Liên hệ Admin
-                                                </span>
-                                            </div>
-                                            <div className="relative">
-                                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                                    <Lock className="h-4 w-4 text-gray-400" />
-                                                </div>
-                                                <Input
-                                                    id="password"
-                                                    name="password"
-                                                    type={showPassword ? 'text' : 'password'}
-                                                    required
-                                                    placeholder="Nhập mật khẩu"
-                                                    className="pl-10 pr-10 h-10 border-gray-300 focus:border-purple-500 focus:ring-purple-500 rounded-lg text-sm"
-                                                    value={formData.password}
-                                                    onChange={handleChange}
-                                                />
-                                                <button
-                                                    type="button"
-                                                    className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                                                    onClick={() => setShowPassword(!showPassword)}
-                                                >
-                                                    {showPassword ? (
-                                                        <EyeOff className="h-4 w-4 text-gray-400 hover:text-gray-600" />
-                                                    ) : (
-                                                        <Eye className="h-4 w-4 text-gray-400 hover:text-gray-600" />
-                                                    )}
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        {/* Remember me */}
-                                        <div className="flex items-center">
-                                            <input
-                                                id="remember-me"
-                                                name="remember-me"
-                                                type="checkbox"
-                                                className="h-3 w-3 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
-                                            />
-                                            <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">
-                                                Ghi nhớ đăng nhập
-                                            </label>
-                                        </div>
-
-                                        {/* Submit Button */}
-                                        <Button
-                                            type="submit"
-                                            disabled={loading}
-                                            className="w-full h-10 bg-gradient-to-r from-purple-600 to-teal-600 hover:from-purple-700 hover:to-teal-700 text-white font-medium rounded-lg transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg text-sm"
-                                        >
-                                            {loading ? (
-                                                <div className="flex items-center justify-center">
-                                                    <div className="animate-spin -ml-1 mr-2 h-4 w-4 border-2 border-white/30 border-t-white rounded-full"></div>
-                                                    Đang xác thực...
-                                                </div>
-                                            ) : (
-                                                <div className="flex items-center justify-center">
-                                                    Đăng nhập
-                                                    <ArrowRight className="ml-2 h-4 w-4" />
-                                                </div>
-                                            )}
-                                        </Button>
-                                    </form>
-                                </CardContent>
-                            </Card>
-                        </div>
+                {/* Footer */}
+                <div className="text-center mt-10 space-y-4">
+                    {/* Quick Links */}
+                    <div className="flex items-center justify-center space-x-6">
+                        <button
+                            onClick={() => router.push('/intro')}
+                            className="flex items-center text-white/40 hover:text-violet-400 transition-colors"
+                        >
+                            <Globe className="w-4 h-4 mr-2" />
+                            <span>Giới thiệu</span>
+                        </button>
+                        <button
+                            onClick={() => router.push('/guide')}
+                            className="flex items-center text-white/40 hover:text-cyan-400 transition-colors"
+                        >
+                            <BookOpen className="w-4 h-4 mr-2" />
+                            <span>Hướng dẫn</span>
+                        </button>
                     </div>
 
-                    {/* Footer */}
-                    <div className="flex-shrink-0 p-4 text-center text-xs text-gray-500 space-y-1">
-                        <div className="flex items-center justify-center mb-2">
-                            <Image
-                                src="/logo1.png"
-                                alt="Tồn kho ĐTB Logo"
-                                width={16}
-                                height={16}
-                                className="object-contain mr-2"
-                            />
-                            <span className="font-medium">Tồn kho ĐTB</span>
-                        </div>
-                        <div className="flex items-center justify-center">
-                            <MapPin className="w-3 h-3 mr-1" />
-                            <span>Hệ thống quản lý kho hàng</span>
-                        </div>
-                        <div className="flex items-center justify-center">
-                            <MapPin className="w-3 h-3 mr-1" />
-                            <span>Demo Version - Phần mềm quản lý kho</span>
-                        </div>
-                        
-                        {/* Quick Links */}
-                        <div className="flex items-center justify-center space-x-4 mt-3">
-                            <button
-                                onClick={() => router.push('/intro')}
-                                className="flex items-center text-blue-600 hover:text-blue-700 transition-colors"
-                            >
-                                <Globe className="w-3 h-3 mr-1" />
-                                <span>Giới thiệu</span>
-                            </button>
-                            <button
-                                onClick={() => router.push('/guide')}
-                                className="flex items-center text-green-600 hover:text-green-700 transition-colors"
-                            >
-                                <BookOpen className="w-3 h-3 mr-1" />
-                                <span>Hướng dẫn</span>
-                            </button>
-                        </div>
-                        
-                        <p className="text-gray-400">© 2025 Tồn kho ĐTB V1</p>
-                    </div>
+                    <p className="text-white/20 text-sm">© 2025 Tồn kho ĐTB V1</p>
                 </div>
             </div>
         </div>
